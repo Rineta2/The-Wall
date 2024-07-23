@@ -1,0 +1,179 @@
+@import "./index.scss";
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  transition: all 0.3s ease-in-out;
+
+  &.fix {
+    background-color: $body-c;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
+    .nav {
+      padding: 1rem 2%;
+    }
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+
+    .profile {
+      font-size: 2rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+
+      @media only screen and (max-width: 320px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    .nav__list {
+      display: flex;
+      gap: 2.5rem;
+
+      @media only screen and (max-width: 768px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $body-c;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        clip-path: circle(0% at 100% 0);
+        transition: all 0.3s ease-in-out;
+        backface-visibility: hidden;
+
+        &.show {
+          clip-path: circle(150% at 100% 0);
+          backface-visibility: visible;
+        }
+
+        &.close {
+          clip-path: circle(0% at 100% 0);
+          backface-visibility: hidden;
+        }
+      }
+
+      .nav__item {
+        position: relative;
+
+        a {
+          font-size: 1.2rem;
+          color: $text-c;
+
+          @media only screen and (max-width: 768px) {
+            font-size: 2.5rem;
+          }
+
+          @media only screen and (max-width: 320px) {
+            font-size: 2rem;
+          }
+
+          &.active {
+            width: 100%;
+            &::before {
+              position: absolute;
+              content: "";
+              bottom: -2px;
+              width: 100%;
+              height: 2px;
+              background-color: $text-c;
+              animation: left 2s ease;
+
+              @keyframes left {
+                from {
+                  transform: translate(0, 0px);
+                  width: 0;
+                }
+
+                to {
+                  transform: translate(2px, 0px);
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .nav__actions {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+
+      @media only screen and (max-width: 320px) {
+        gap: 0.5rem;
+      }
+
+      .menu {
+        display: none;
+        cursor: pointer;
+        z-index: 999;
+
+        @media only screen and (max-width: 768px) {
+          display: block;
+        }
+
+        .close,
+        .hamburger {
+          font-size: 2rem;
+        }
+      }
+
+      .clock {
+        width: 130px;
+        height: 45px;
+        border-radius: 6px;
+        background-color: $text-c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media only screen and (max-width: 320px) {
+          width: 120px;
+        }
+
+        span {
+          color: $body-c;
+          margin-left: 6px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $text-c;
+
+  p {
+    display: flex;
+    align-items: center;
+    font-size: 1.7rem;
+    color: $body-c;
+
+    .icons {
+      margin-right: 6px;
+    }
+
+    a {
+      color: $body-c;
+      margin-left: 6px;
+      margin-right: 6px;
+    }
+  }
+}
